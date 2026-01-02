@@ -205,13 +205,13 @@ I don’t know how I got this lucky, but I know one thing for sure — I’d cho
 <script>
 /* ===== COUNTDOWN ===== */
 const unlockDate = new Date("Feb 20, 2026 00:00:00").getTime();
-const PREVIEW_MODE = true;
+const PREVIEW_MODE = false;
 
 setInterval(() => {
   const now = new Date().getTime();
   const diff = unlockDate - now;
 
-  if (diff <= 0 || PREVIEW_MODE) {
+  if (diff <= 0 || PREVIEW_MODE || location.search.includes("preview")) {
     lockScreen.style.display = "none";
     site.style.display = "block";
   } else {
@@ -282,3 +282,4 @@ function startFireworks(){
 
 </body>
 </html>
+
