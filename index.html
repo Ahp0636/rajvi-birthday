@@ -87,9 +87,8 @@ button {
   <img src="photo4.jpg">
 </div>
   
-<audio id="bgMusic" preload="auto">
+<audio id="bgMusic" preload="auto" controls>
   <source src="song.mp3" type="audio/mpeg">
-  Your browser does not support audio.
 </audio>
   
 <div class="container">
@@ -135,22 +134,29 @@ setInterval(() => {
   }
 }, 1000);
 </script>
-  <script>
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("musicBtn");
   const music = document.getElementById("bgMusic");
 
   btn.addEventListener("click", () => {
     music.volume = 0.6;
     music.loop = true;
-    music.play();
 
-    setTimeout(() =>{
-      alert("“You survived my madness for 2 years… this song is your reward 🫶😂🎵 .This song is for every laugh, every tear, and every night we survived together 💛.”
-            "Best Roommmate Ever <3<3<3");
-    },400);
+    music.play()
+      .then(() => {
+        setTimeout(() => {
+          alert("“You survived my madness for 2 years… this song is your reward 🫶😂🎵 .This song is for every laugh, every tear, and every night we survived together 💛.”\nBest Roommate Ever ❤️❤️❤️");
+        }, 400);
+      })
+      .catch(() => {
+        alert("Tap again 💕 (browser rule)");
+      });
   });
+});
 </script>
 
 </body>
 </html>
+
 
