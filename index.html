@@ -37,8 +37,12 @@ html, body {
 /* ===== SLIDESHOW ===== */
 .slideshow {
   position: fixed;
-  inset: 0;
-  z-index: -1;
+  top: 0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  z-index: 0;
+  overflow: hidden;
 }
 
 .slideshow img {
@@ -72,7 +76,9 @@ html, body {
   align-items: center;
   text-align: center;
   padding: 20px;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(1px);
+  position:relative;
+  z-index:2;
 }
 
 button {
@@ -277,3 +283,4 @@ function startFireworks(){
 
 </body>
 </html>
+
