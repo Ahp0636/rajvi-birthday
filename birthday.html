@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rajvi's Birthday 💖</title>
+
+<style>
+body {
+  margin:0;
+  font-family: 'Comic Sans MS', cursive;
+  text-align:center;
+  color:white;
+}
+
+#lockScreen {
+  position:fixed;
+  inset:0;
+  background:black;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+#site {
+  display:none;
+}
+
+.slideshow {
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+.slideshow img {
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  animation: slide 20s infinite;
+}
+
+.slideshow img:nth-child(1){animation-delay:0s}
+.slideshow img:nth-child(2){animation-delay:5s}
+.slideshow img:nth-child(3){animation-delay:10s}
+.slideshow img:nth-child(4){animation-delay:15s}
+
+@keyframes slide {
+  0%{opacity:0}
+  10%{opacity:1}
+  25%{opacity:1}
+  35%{opacity:0}
+  100%{opacity:0}
+}
+
+.container {
+  padding:40px;
+  background:rgba(0,0,0,0.55);
+  min-height:100vh;
+}
+
+button {
+  background:#ff1493;
+  border:none;
+  border-radius:25px;
+  padding:12px 25px;
+  color:white;
+  font-size:1rem;
+}
+</style>
+</head>
+
+<body>
+
+<div id="lockScreen">
+  <h1>🎁 Rajvi's Surprise Unlocks In</h1>
+  <h2 id="countdown"></h2>
+  <p>Come back on 20 February 💗</p>
+</div>
+
+<div id="site">
+
+<div class="slideshow">
+  <img src="photo1.jpg">
+  <img src="photo2.jpg">
+  <img src="photo3.jpg">
+  <img src="photo4.jpg">
+</div>
+
+<audio autoplay loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+  <h1>🎉 Happy Birthday Rajvi 🎉</h1>
+
+  <p>
+  Two years of madness, midnight cooking, crackhead dances, horror nights,
+  temple visits, movie marathons and emotional support 💖  
+  Thank you for holding my hand — and sometimes my leg — when life or ghosts scared me.
+  I love our chaos forever 🫶
+  </p>
+
+  <button onclick="alert('Best Roommate Ever 💗')">Click for extra love 💌</button>
+</div>
+
+</div>
+
+<script>
+const unlockDate = new Date("Feb 20, 2026 00:00:00").getTime();
+
+/*
+  PREVIEW MODE
+  true  = you can see everything now
+  false = locked until birthday
+*/
+const PREVIEW_MODE = true;
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const diff = unlockDate - now;
+
+  if (diff <= 0 || PREVIEW_MODE) {
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementById("site").style.display = "block";
+  } else {
+    let d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    let h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    let s = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+      `${d} Days ${h} Hours ${m} Min ${s} Sec`;
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
