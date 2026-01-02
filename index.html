@@ -86,22 +86,23 @@ button {
   <img src="photo3.jpg">
   <img src="photo4.jpg">
 </div>
-
-<audio autoplay loop>
+  
+<audio id="bgMusic" preload="auto">
   <source src="song.mp3" type="audio/mpeg">
+  Your browser does not support audio.
 </audio>
-
+  
 <div class="container">
-  <h1>🎉 Happy Birthday Rajvi 🎉</h1>
+  <h1>🎉 Happiest 20th Birthday Rajvi 🎉</h1>
 
   <p>
-  Two years of madness, midnight cooking, crackhead dances, horror nights,
-  temple visits, movie marathons and emotional support 💖  
-  Thank you for holding my hand — and sometimes my leg — when life or ghosts scared me.
-  I love our chaos forever 🫶
+  Two years of absolute madness — midnight cooking shows that deserved their own reality TV, crackhead dance sessions on item songs with zero shame, and horror movie nights where we confidently pressed play and five minutes later I was holding your hand… and you were holding my leg like your life depended on it 😭.
+From temple visits to laptop movie marathons, from laughing till our stomachs hurt to crying at 2 a.m. for no clear reason — you’ve been there through it all. You’ve seen me at my most dramatic, most sleepy, most chaotic, and somehow still chose to stay my roommate (respect 🫡).
+Thank you for being my comfort person — for holding my hand when life got scary, my leg when ghosts got too real, and my heart when things got heavy. Living with you taught me that home isn’t four walls… it’s shared food, shared tears, shared playlists, and shared chaos.
+I don’t know how I got this lucky, but I know one thing for sure — I’d choose this madness, this friendship, and you again and again. Chaos forever, best roommate ever 🫶✨
   </p>
 
-  <button onclick="alert('Best Roommate Ever 💗')">Click for extra love 💌</button>
+  <button id="musicBtn">Click for extra love 💌</button>
 </div>
 
 </div>
@@ -134,6 +135,22 @@ setInterval(() => {
   }
 }, 1000);
 </script>
+  <script>
+  const btn = document.getElementById("musicBtn");
+  const music = document.getElementById("bgMusic");
+
+  btn.addEventListener("click", () => {
+    music.volume = 0.6;
+    music.loop = true;
+    music.play();
+
+    setTimeout(() =>{
+      alert("“You survived my madness for 2 years… this song is your reward 🫶😂🎵 .This song is for every laugh, every tear, and every night we survived together 💛.”
+            "Best Roommmate Ever <3<3<3");
+    },400);
+  });
+</script>
 
 </body>
 </html>
+
