@@ -581,12 +581,9 @@ animate();
 
 setTimeout(() => {
   clearInterval(burst);
-}, 8000);
-    
-  setTimeout(() => {
-    canvas.style.display = "none";
-    showNameHearts();
-  }, 10000);
+  c.style.display = "none";
+  showNameHearts();
+}, 10000); // hearts visible ~10s
 }
   function showNameHearts() {
   const overlay = document.getElementById("nameOverlay");
@@ -615,15 +612,29 @@ setTimeout(() => {
   const text = document.getElementById("endingText");
   end.style.display = "flex";
 
-  text.innerText =
-`Some people slowly become home.
-Not by grand gestures,
-but by staying.
+ text.innerText =
+`Some people don’t arrive loudly.
+They just stay —
+through ordinary days,
+messy nights,
+and unspoken moments.
 
-Thank you for being my constant,
-my comfort, my chaos.
+Thank you for staying with me,
+for turning chaos into comfort,
+and laughter into home.
+
+Life didn’t promise permanence,
+but somehow you stayed.
+
+In shared silence,
+in shared laughter,
+in shared madness.
+
+Thank you for being my safe place
+in a noisy world.
+
 Happy Birthday, Rajvi 🤍`;
-
+    
   // 🎶 Soft music fade
   const music = document.getElementById("bgMusic");
   const fade = setInterval(() => {
@@ -639,7 +650,3 @@ Happy Birthday, Rajvi 🤍`;
 
 </body>
 </html>show
-
-
-
-
