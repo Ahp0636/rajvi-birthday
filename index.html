@@ -228,7 +228,7 @@ I don’t know how I got this lucky, but I know one thing for sure — I’d cho
     <h2>💭 Mini Roomie Quiz</h2>
     <p id="quizQ"></p>
     <div id="quizOptions"></div>
-    <button id="quizNext" style="display:none;">Next ➜</button>
+    <button id="quizNext" style="display:none;" onclick="goNextQuiz()">Next ➜</button>
   </div>
 </div>
 
@@ -241,18 +241,17 @@ document.addEventListener("DOMContentLoaded", () => {
   quizQ = document.getElementById("quizQ");
   quizOptions = document.getElementById("quizOptions");
   quizNext = document.getElementById("quizNext");
-
-  // ✅ NEXT BUTTON WORKING FIX
-  quizNext.addEventListener("click", () => {
-    quizIndex++;
-
-    if (quizIndex < quiz.length) {
-      showQuizQuestion();
-    } else {
-      endQuiz();
-    }
   });
-});
+  // ✅ NEXT BUTTON WORKING FIX
+  function goNextQuiz() {
+  quizIndex++;
+
+  if (quizIndex < quiz.length) {
+    showQuizQuestion();
+  } else {
+    endQuiz();
+  }
+}
 /* ===== COUNTDOWN ===== */
 const unlockDate = new Date("Feb 20, 2026 00:00:00").getTime();
 const PREVIEW_MODE = false;
@@ -430,6 +429,7 @@ function endQuiz() {
 
 </body>
 </html>
+
 
 
 
