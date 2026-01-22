@@ -180,9 +180,15 @@ button {
 }
   #heartCanvas {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 9999;   /* 🔥 ABOVE EVERYTHING */
   display: none;
-  z-index: 300;
+
+  pointer-events: none;
 }
 </style>
 </head>
@@ -551,5 +557,6 @@ cakeImg.onclick = () => {
 
 </body>
 </html>
+
 
 
