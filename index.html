@@ -193,7 +193,7 @@ button {
   #nameOverlay {
   display: none;
   background: rgba(0,0,0,0.9);
-  z-index: 400;
+  z-index: 10000;
 }
 
 #nameBox {
@@ -572,7 +572,7 @@ setTimeout(() => {
 }, 8000);
     
   setTimeout(() => {
-    c.style.display = "none";
+    canvas.style.display = "none";
     showNameHearts();
   }, 10000);
 }
@@ -584,21 +584,22 @@ setTimeout(() => {
   box.innerHTML = "";
 
   const name = "RAJVI";
-  let index = 0;
+  let i = 0;
 
   const interval = setInterval(() => {
-    if (index < name.length) {
-      box.innerHTML += "💗 " + name[index] + " ";
-      index++;
+    if (i < name.length) {
+      box.innerHTML += `<span style="margin:0 8px;">💗 ${name[i]}</span>`;
+      i++;
     } else {
       clearInterval(interval);
-      setTimeout(showSoftEnding, 2000);
+      setTimeout(showSoftEnding, 2500);
     }
-  }, 600);
+  }, 700);
 }
 </script>
 
 </body>
 </html>show
+
 
 
