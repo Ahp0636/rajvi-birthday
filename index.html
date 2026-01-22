@@ -178,6 +178,12 @@ button {
 .candleOff {
   filter: brightness(0.7);
 }
+  #heartCanvas {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 300;
+}
 </style>
 </head>
 
@@ -261,6 +267,8 @@ I don’t know how I got this lucky, but I know one thing for sure — I’d cho
     <p id="cakeText">Tap the candle 🕯️</p>
   </div>
 </div>
+  <!-- HEART & STAR BURST -->
+<canvas id="heartCanvas"></canvas>
 <script>
   // ===== QUIZ ELEMENT REFERENCES =====
 let quizOverlay, quizQ, quizOptions, quizNext;
@@ -489,10 +497,59 @@ cakeImg.onclick = () => {
   cakeImg.classList.add("candleOff");
   cakeText.innerText = "Wish made 🎂✨";
 
-  // Next: hearts & name reveal will start here
+  setTimeout(() => {
+    document.getElementById("cakeBox").style.display = "none";
+    startHeartBurst();
+  }, 1500);
 };
+  function startHeartBurst() {
+  const c = document.getElementById("heartCanvas");
+  const ctx = c.getContext("2d");
+  c.style.display = "block";
+  c.width = innerWidth;
+  c.height = innerHeight;
+
+  let particles = [];
+
+  function spawn() {
+    for (let i = 0; i < 25; i++) {
+      particles.push({
+        x: c.width / 2,
+        y: c.height / 2,
+        dx: (Math.random() - 0.5) * 6,
+        dy: (Math.random() - 0.5) * 6,
+        life: 80,
+        type: Math.random() > 0.5 ? "❤️" : "✨"
+      });
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    particles.forEach((p, i) => {
+      p.x += p.dx;
+      p.y += p.dy;
+      p.life--;
+
+      ctx.font = "22px serif";
+      ctx.fillText(p.type, p.x, p.y);
+
+      if (p.life <= 0) particles.splice(i, 1);
+    });
+    requestAnimationFrame(animate);
+  }
+
+  spawn();
+  animate();
+
+  setTimeout(() => {
+    c.style.display = "none";
+    showNameHearts();
+  }, 3500);
+}
 </script>
 
 </body>
 </html>
+
 
