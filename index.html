@@ -142,6 +142,27 @@ button {
   from {opacity:0; transform:scale(0.7)}
   to {opacity:1; transform:scale(1)}
 }
+ /* ===== MINI QUIZ ===== */
+
+#quizOverlay h2 {
+  margin-bottom: 10px;
+}
+
+#quizOptions button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  background: #ff1493;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  color: white;
+  font-size: 1rem;
+}
+
+#quizOptions button:disabled {
+  opacity: 0.6;
+}
 </style>
 </head>
 
@@ -199,6 +220,15 @@ I don’t know how I got this lucky, but I know one thing for sure — I’d cho
   <div id="photoBox">
     <img src="photo4.jpg">
     <h2>Love you Roomie 🫶</h2>
+  </div>
+</div>
+  <!-- MINI QUIZ -->
+<div id="quizOverlay" class="overlay">
+  <div class="msgBox">
+    <h2>💭 Mini Roomie Quiz</h2>
+    <p id="quizQ"></p>
+    <div id="quizOptions"></div>
+    <button id="quizNext" style="display:none;">Next ➜</button>
   </div>
 </div>
 
@@ -278,8 +308,112 @@ function startFireworks(){
     photoBox.style.display= "block";
   }, 6000);
 }
+  /* ===== MINI QUIZ LOGIC ===== */
+
+const quiz = [
+  {
+    q: "What usually happened when we said ‘let’s sleep early’? 😴",
+    a: [
+      "We actually slept",
+      "Deep emotional talks",
+      "Laughing like idiots",
+      "Sunrise happened 🌅"
+    ],
+    correct: 2
+  },
+  {
+    q: "Who pretended to be brave during horror movies? 👻",
+    a: [
+      "You",
+      "Me",
+      "Both (fake confidence)",
+      "No one. We screamed 😭"
+    ],
+    correct: 1
+  },
+  {
+    q: "What was our strongest talent as roommates? 💃😂",
+    a: [
+      "Random dancing anytime",
+      "Overthinking life",
+      "Eating without schedule",
+      "All of the above 💀"
+    ],
+    correct: 3
+  },
+  {
+    q: "What turned normal days into chaos? 🤡",
+    a: [
+      "Item songs",
+      "Inside jokes",
+      "Zero sleep",
+      "Each other 🫶"
+    ],
+    correct: 0
+  },
+  {
+    q: "Our room was basically… 🏠",
+    a: [
+      "A hostel room",
+      "A mini theatre",
+      "A therapy center",
+      "Home with extra madness ❤️"
+    ],
+    correct: 3
+  }
+];
+
+let quizIndex = 0;
+let quizScore = 0;
+
+function startQuiz() {
+  quizOverlay.style.display = "flex";
+  quizIndex = 0;
+  quizScore = 0;
+  showQuizQuestion();
+}
+
+function showQuizQuestion() {
+  quizNext.style.display = "none";
+  quizQ.innerText = quiz[quizIndex].q;
+  quizOptions.innerHTML = "";
+
+  quiz[quizIndex].a.forEach((option, index) => {
+    const btn = document.createElement("button");
+    btn.innerText = option;
+
+    btn.onclick = () => {
+      quizNext.style.display = "block";
+
+      if (quiz[quizIndex].correct === index) {
+        quizScore++;
+      }
+
+      Array.from(quizOptions.children).forEach(b => b.disabled = true);
+    };
+
+    quizOptions.appendChild(btn);
+  });
+}
+
+quizNext.onclick = () => {
+  quizIndex++;
+
+  if (quizIndex < quiz.length) {
+    showQuizQuestion();
+  } else {
+    endQuiz();
+  }
+};
+
+function endQuiz() {
+  quizOverlay.style.display = "none";
+  console.log("Quiz completed! Score:", quizScore);
+  // 🎂 Cake will be triggered here later
+}
 </script>
 
 </body>
 </html>
+
 
