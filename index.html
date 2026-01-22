@@ -166,6 +166,18 @@ button {
   #quizResult h2 {
   margin-bottom: 10px;
 }
+  #cakeBox {
+  display: none;
+}
+
+#cakeText {
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+
+.candleOff {
+  filter: brightness(0.7);
+}
 </style>
 </head>
 
@@ -240,6 +252,13 @@ I don’t know how I got this lucky, but I know one thing for sure — I’d cho
     <h2 id="scoreTitle"></h2>
     <p id="scoreMsg"></p>
     <button onclick="closeQuizResult()">Continue 💖</button>
+  </div>
+</div>
+  <!-- CAKE SURPRISE -->
+<div id="cakeBox" class="overlay">
+  <div class="msgBox" style="text-align:center;">
+    <img src="cake.png" id="cakeImg" style="width:200px; cursor:pointer;">
+    <p id="cakeText">Tap the candle 🕯️</p>
   </div>
 </div>
 <script>
@@ -452,16 +471,18 @@ function endQuiz() {
 }
   function closeQuizResult() {
   document.getElementById("quizResult").style.display = "none";
-
-  // Next surprise will start from here (cake 🎂 later)
+  document.getElementById("cakeBox").style.display = "flex";
 }
+  const cakeImg = document.getElementById("cakeImg");
+const cakeText = document.getElementById("cakeText");
+
+cakeImg.onclick = () => {
+  cakeImg.classList.add("candleOff");
+  cakeText.innerText = "Wish made 🎂✨";
+
+  // Next: hearts & name reveal will start here
+};
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
