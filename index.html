@@ -470,7 +470,16 @@ function endQuiz() {
   }
 }
   function closeQuizResult() {
+  // hide quiz result screen
   document.getElementById("quizResult").style.display = "none";
+
+  // hide first page (homepage)
+  document.getElementById("site").style.display = "none";
+
+  // just in case, hide photo/fireworks overlay
+  document.getElementById("finalOverlay").style.display = "none";
+
+  // show cake
   document.getElementById("cakeBox").style.display = "flex";
 }
   const cakeImg = document.getElementById("cakeImg");
@@ -486,3 +495,4 @@ cakeImg.onclick = () => {
 
 </body>
 </html>
+
