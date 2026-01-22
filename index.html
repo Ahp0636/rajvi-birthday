@@ -206,6 +206,11 @@ button {
   from { opacity: 0; transform: scale(0.9); }
   to   { opacity: 1; transform: scale(1); }
 }
+  #endingOverlay {
+  display: none;
+  background: rgba(0,0,0,0.85);
+  z-index: 11000;
+}
 </style>
 </head>
 
@@ -294,6 +299,13 @@ I don’t know how I got this lucky, but I know one thing for sure — I’d cho
   <!-- NAME REVEAL -->
 <div id="nameOverlay" class="overlay">
   <div id="nameBox"></div>
+</div>
+  <!-- SOFT ENDING -->
+<div id="endingOverlay" class="overlay">
+  <div class="msgBox">
+    <p id="endingText"></p>
+    <p style="margin-top:10px;">— Always your roomie 🤍</p>
+  </div>
 </div>
 <script>
   // ===== QUIZ ELEMENT REFERENCES =====
@@ -596,10 +608,38 @@ setTimeout(() => {
     }
   }, 700);
 }
+  function showSoftEnding() {
+  document.getElementById("nameOverlay").style.display = "none";
+
+  const end = document.getElementById("endingOverlay");
+  const text = document.getElementById("endingText");
+  end.style.display = "flex";
+
+  text.innerText =
+`Some people slowly become home.
+Not by grand gestures,
+but by staying.
+
+Thank you for being my constant,
+my comfort, my chaos.
+Happy Birthday, Rajvi 🤍`;
+
+  // 🎶 Soft music fade
+  const music = document.getElementById("bgMusic");
+  const fade = setInterval(() => {
+    if (music.volume > 0.05) {
+      music.volume -= 0.05;
+    } else {
+      music.pause();
+      clearInterval(fade);
+    }
+  }, 300);
+}
 </script>
 
 </body>
 </html>show
+
 
 
 
