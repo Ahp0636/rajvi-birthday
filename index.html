@@ -163,6 +163,9 @@ button {
 #quizOptions button:disabled {
   opacity: 0.6;
 }
+  #quizResult h2 {
+  margin-bottom: 10px;
+}
 </style>
 </head>
 
@@ -231,7 +234,14 @@ I don’t know how I got this lucky, but I know one thing for sure — I’d cho
     <button id="quizNext" style="display:none;" onclick="goNextQuiz()">Next ➜</button>
   </div>
 </div>
-
+  <!-- QUIZ RESULT -->
+<div id="quizResult" class="overlay">
+  <div class="msgBox">
+    <h2 id="scoreTitle"></h2>
+    <p id="scoreMsg"></p>
+    <button onclick="closeQuizResult()">Continue 💖</button>
+  </div>
+</div>
 <script>
   // ===== QUIZ ELEMENT REFERENCES =====
 let quizOverlay, quizQ, quizOptions, quizNext;
@@ -422,13 +432,34 @@ function showQuizQuestion() {
 }
 function endQuiz() {
   quizOverlay.style.display = "none";
-  console.log("Quiz completed! Score:", quizScore);
-  // 🎂 Cake will be triggered here later
+  finalOverlay.style.display = "none"; // hide photo/fireworks
+
+  const quizResult = document.getElementById("quizResult");
+  const scoreTitle = document.getElementById("scoreTitle");
+  const scoreMsg = document.getElementById("scoreMsg");
+
+  quizResult.style.display = "flex";
+
+  scoreTitle.innerText = `You scored ${quizScore}/${quiz.length} 🫶`;
+
+  if (quizScore >= 4) {
+    scoreMsg.innerText = "Okay wow 😭💖 you know us TOO well. Chaos certified.";
+  } else if (quizScore >= 2) {
+    scoreMsg.innerText = "Not bad 😌✨ but our madness is unmatched.";
+  } else {
+    scoreMsg.innerText = "Excuse me?? Fake roommate detected 🤡😂";
+  }
+}
+  function closeQuizResult() {
+  document.getElementById("quizResult").style.display = "none";
+
+  // Next surprise will start from here (cake 🎂 later)
 }
 </script>
 
 </body>
 </html>
+
 
 
 
