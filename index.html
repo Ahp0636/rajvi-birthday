@@ -165,7 +165,7 @@ button {
 </div>
 
 <audio id="bgMusic">
-  <source src="song.mp3" type="audio/mpeg">
+  <source src="long_song.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
@@ -226,7 +226,7 @@ setInterval(() => {
 /* ===== MUSIC + FLOW ===== */
 musicBtn.onclick = () => {
   bgMusic.volume = 0.7;
-  bgMusic.loop = true;
+  bgMusic.loop = false;
   bgMusic.play();
   msgOverlay.style.display = "flex";
 };
@@ -282,6 +282,3 @@ function startFireworks(){
 
 </body>
 </html>
-
-
-
