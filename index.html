@@ -190,6 +190,22 @@ button {
 
   pointer-events: none;
 }
+  #nameOverlay {
+  display: none;
+  background: rgba(0,0,0,0.9);
+  z-index: 400;
+}
+
+#nameBox {
+  font-size: 3rem;
+  letter-spacing: 14px;
+  animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
 </style>
 </head>
 
@@ -275,6 +291,10 @@ I don’t know how I got this lucky, but I know one thing for sure — I’d cho
 </div>
   <!-- HEART & STAR BURST -->
 <canvas id="heartCanvas"></canvas>
+  <!-- NAME REVEAL -->
+<div id="nameOverlay" class="overlay">
+  <div id="nameBox"></div>
+</div>
 <script>
   // ===== QUIZ ELEMENT REFERENCES =====
 let quizOverlay, quizQ, quizOptions, quizNext;
@@ -556,8 +576,29 @@ setTimeout(() => {
     showNameHearts();
   }, 10000);
 }
+  function showNameHearts() {
+  const overlay = document.getElementById("nameOverlay");
+  const box = document.getElementById("nameBox");
+
+  overlay.style.display = "flex";
+  box.innerHTML = "";
+
+  const name = "RAJVI";
+  let index = 0;
+
+  const interval = setInterval(() => {
+    if (index < name.length) {
+      box.innerHTML += "💗 " + name[index] + " ";
+      index++;
+    } else {
+      clearInterval(interval);
+      setTimeout(showSoftEnding, 2000);
+    }
+  }, 600);
+}
 </script>
 
 </body>
 </html>show
+
 
