@@ -233,6 +233,15 @@ I don’t know how I got this lucky, but I know one thing for sure — I’d cho
 </div>
 
 <script>
+  // ===== QUIZ ELEMENT REFERENCES =====
+let quizOverlay, quizQ, quizOptions, quizNext;
+
+document.addEventListener("DOMContentLoaded", () => {
+  quizOverlay = document.getElementById("quizOverlay");
+  quizQ = document.getElementById("quizQ");
+  quizOptions = document.getElementById("quizOptions");
+  quizNext = document.getElementById("quizNext");
+});
 /* ===== COUNTDOWN ===== */
 const unlockDate = new Date("Feb 20, 2026 00:00:00").getTime();
 const PREVIEW_MODE = false;
@@ -303,10 +312,16 @@ function startFireworks(){
   const f = setInterval(boom,700);
   animate();
 
+ setTimeout(() => {
+  clearInterval(f);
+  photoBox.style.display = "block";
+
+  // 🔥 START QUIZ AFTER PHOTO
   setTimeout(() => {
-    clearInterval(f);
-    photoBox.style.display= "block";
-  }, 6000);
+    startQuiz();
+  }, 2500);
+
+}, 6000);
 }
   /* ===== MINI QUIZ LOGIC ===== */
 
@@ -415,5 +430,6 @@ function endQuiz() {
 
 </body>
 </html>
+
 
 
