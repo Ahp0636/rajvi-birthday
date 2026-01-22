@@ -241,6 +241,17 @@ document.addEventListener("DOMContentLoaded", () => {
   quizQ = document.getElementById("quizQ");
   quizOptions = document.getElementById("quizOptions");
   quizNext = document.getElementById("quizNext");
+
+  // ✅ NEXT BUTTON WORKING FIX
+  quizNext.addEventListener("click", () => {
+    quizIndex++;
+
+    if (quizIndex < quiz.length) {
+      showQuizQuestion();
+    } else {
+      endQuiz();
+    }
+  });
 });
 /* ===== COUNTDOWN ===== */
 const unlockDate = new Date("Feb 20, 2026 00:00:00").getTime();
@@ -410,17 +421,6 @@ function showQuizQuestion() {
     quizOptions.appendChild(btn);
   });
 }
-
-quizNext.onclick = () => {
-  quizIndex++;
-
-  if (quizIndex < quiz.length) {
-    showQuizQuestion();
-  } else {
-    endQuiz();
-  }
-};
-
 function endQuiz() {
   quizOverlay.style.display = "none";
   console.log("Quiz completed! Score:", quizScore);
@@ -430,6 +430,7 @@ function endQuiz() {
 
 </body>
 </html>
+
 
 
 
